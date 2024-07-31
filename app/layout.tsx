@@ -1,65 +1,57 @@
-import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
-import clsx from "clsx";
+import { CartProvider } from 'components/cart/cart-context';
+import { Navbar } from 'components/layout/navbar';
+import { WelcomeToast } from 'components/welcome-toast';
+import { GeistSans } from 'geist/font/sans';
+import { getCart } from 'lib/shopify';
+import { ensureStartsWith } from 'lib/utils';
+import { cookies } from 'next/headers';
+import { ReactNode } from 'react';
+import { Toaster } from 'sonner';
+import './globals.css';
 
-import { Providers } from "./providers";
+const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  : 'http://localhost:3000';
+const twitterCreator = TWITTER_CREATOR ? ensureStartsWith(TWITTER_CREATOR, '@') : undefined;
+const twitterSite = TWITTER_SITE ? ensureStartsWith(TWITTER_SITE, 'https://') : undefined;
 
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
-import { Navbar } from "@/components/navbar";
-
-export const metadata: Metadata = {
+export const metadata = {
+  metadataBase: new URL(baseUrl),
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: SITE_NAME!,
+    template: `%s | ${SITE_NAME}`
   },
-  description: siteConfig.description,
-  icons: {
-    icon: "/favicon.ico",
+  robots: {
+    follow: true,
+    index: true
   },
+  ...(twitterCreator &&
+    twitterSite && {
+      twitter: {
+        card: 'summary_large_image',
+        creator: twitterCreator,
+        site: twitterSite
+      }
+    })
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const cartId = cookies().get('cartId')?.value;
+  // Don't await the fetch, pass the Promise to the context provider
+  const cart = getCart(cartId);
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
   return (
-    <html suppressHydrationWarning lang="en">
-      <head />
-      <body
-        className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
-      >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            <Navbar />
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-              {children}
-            </main>
-            <footer className="w-full flex items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                title="nextui.org homepage"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">NextUI</p>
-              </Link>
-            </footer>
-          </div>
-        </Providers>
+    <html lang="en" className={GeistSans.variable}>
+      <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+        <CartProvider cartPromise={cart}>
+          <Navbar />
+          <main>
+            {children}
+            <Toaster closeButton />
+            <WelcomeToast />
+          </main>
+        </CartProvider>
       </body>
     </html>
   );
