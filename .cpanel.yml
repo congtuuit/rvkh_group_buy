@@ -1,3 +1,4 @@
+---
 deployment:
   tasks:
     - export DEPLOYMENT_ROOT=/home/agumwljk
