@@ -5,8 +5,8 @@ export const siteConfig = {
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
-      label: "Trang chủ",
-      href: "/",
+      label: "Trang Chủ",
+      href: "https://reviewkhoahoc.net/",
     },
     {
       label: "Giới thiệu",
@@ -15,15 +15,16 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "Trang chủ",
-      href: "/",
+      label: "Trang Chủ",
+      href: "https://reviewkhoahoc.net/",
     },
     {
-      label: "Giới thiệu",
-      href: "/about",
+      label: "Khóa Học Group Buy",
+      href: "/",
     },
   ],
   links: {
+    homePage: "https://reviewkhoahoc.net/"
     // github: "https://github.com/nextui-org/nextui",
     // twitter: "https://twitter.com/getnextui",
     // docs: "https://nextui.org",
