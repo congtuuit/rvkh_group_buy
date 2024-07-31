@@ -2,9 +2,10 @@
 deployment:
   tasks:
     - export DEPLOYMENT_ROOT=/home/agumwljk
-    - export DEPLOYMENT_PATH=$DEPLOYMENT_ROOT/
-    - export REPOS=$DEPLOYMENT_ROOT/repositories/groupbuy.reviewkhoahoc.net
+    - export DEPLOYMENT_PATH=$DEPLOYMENT_ROOT/groupbuy.reviewkhoahoc.net
+    - export REPOS=$DEPLOYMENT_ROOT/repositories/rvkh_group_buy
     - export BUILD_PATH=$REPOS/out
 
     # Copy all files from the build folder to the deployment path
     - /bin/cp -r $BUILD_PATH/* $DEPLOYMENT_PATH/
+    
