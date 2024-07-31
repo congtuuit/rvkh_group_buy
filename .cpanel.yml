@@ -1,0 +1,20 @@
+deployment:
+  tasks:
+    - export DEPLOYMENT_ROOT=/home/agumwljk
+    - export DEPLOYPATH=$DEPLOYMENT_ROOT/groupbuy.reviewkhoahoc.net
+    - export APP_ROOT=$DEPLOYMENT_ROOT/repositories/rvkh_group_buy
+    - export NODE_ENV=production
+    - export PORT=3000
+
+    # Install dependencies
+    - cd $APP_ROOT
+    - npm install
+
+    # Build the Next.js app
+    - npm run build
+
+    # Copy all files from the build folder to the deployment path
+    - /bin/cp -r $APP_ROOT/.next/* $DEPLOYPATH/
+
+    # Start the Next.js app
+    #- /opt/cpanel/ea-nodejs16/bin/npm start --prefix $APP_ROOT
