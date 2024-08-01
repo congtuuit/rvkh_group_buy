@@ -6,7 +6,6 @@ import { siteConfig } from "@/config/site";
 
 export default function HomeBreadcrumbs() {
   const variants = ["light"];
-
   return (
     <div className="flex flex-col flex-wrap gap-4">
       {variants.map((variant) => (
