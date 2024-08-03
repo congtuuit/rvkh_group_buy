@@ -27,7 +27,7 @@ function GroupBuyCourses(props: ProductListProps) {
 
   const fetchPosts = async (page: number) => {
     try {
-      const response = await getPostsAsync({ paged: page });
+      const response = await getPostsAsync({ paged: page, posts_per_page: 18 });
       const { posts, total_pages } = response.data;
       const displayPosts = posts?.map((i: any) => {
         return {
@@ -61,14 +61,16 @@ function GroupBuyCourses(props: ProductListProps) {
               return <ProductCard key={index} {...data} />;
             })}
           </div>
-          <Pagination
-            page={currentPage}
-            total={totalPages}
-            className="mt-2"
-            isCompact
-            showControls
-            initialPage={1}
-          />
+          <div className="flex flex-col items-center justify-center">
+            <Pagination
+              page={currentPage}
+              total={totalPages}
+              onChange={(pageNumber) => setCurrentPage(pageNumber)}
+              className="mt-2"
+              showControls
+              initialPage={1}
+            />
+          </div>
         </>
       ) : (
         <p>No group buy courses found.</p>

@@ -123,6 +123,19 @@
     --nextui-hover-opacity: .9;
 }
 
-.sidebar-bg {
-    border-color: hsl(var(--nextui-divider) / var(--nextui-divider-opacity, var(--tw-border-opacity)));
+.sidebar-bg .hover\:bg-default-100:hover{
+    color: #4b4b4b;
+}
+
+
+.sidebar-bg .bg-primary-100 {
+    background-color: #4b4b4b;
+}
+
+.sidebar-bg .\[\&_svg_path\]\:fill-primary-500 svg path {
+    fill: hsl(var(--nextui-default-400) / var(--nextui-default-400-opacity, 1));
+}
+
+.sidebar-bg .text-default-900 {
+    color: inherit
 }

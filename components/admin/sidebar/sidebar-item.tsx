@@ -22,6 +22,7 @@ export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
     <NextLink
       href={href}
       className="text-default-900 active:bg-none max-w-full"
+      style={{ color: "inherit" }}
     >
       <div
         className={clsx(
@@ -33,7 +34,7 @@ export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
         onClick={handleClick}
       >
         {icon}
-        <span className="text-default-900">{title}</span>
+        <span className="text-default-900" style={{ color: "inherit" }}>{title}</span>
       </div>
     </NextLink>
   );

@@ -5,6 +5,7 @@ import { useLockedBody } from "../hooks/useBodyLock";
 import { NavbarWrapper } from "../navbar/navbar";
 import { SidebarWrapper } from "../sidebar/sidebar";
 import { SidebarContext } from "./layout-context";
+import ToastWrapper from "@/components/admin/ToastWrapper"
 
 interface Props {
   children: React.ReactNode;
@@ -25,6 +26,7 @@ export const Layout = ({ children }: Props) => {
         setCollapsed: handleToggleSidebar,
       }}>
       <section className='flex'>
+        <ToastWrapper />
         <SidebarWrapper />
         <NavbarWrapper>{children}</NavbarWrapper>
       </section>
