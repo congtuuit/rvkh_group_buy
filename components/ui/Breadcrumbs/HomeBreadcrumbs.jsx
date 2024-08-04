@@ -10,7 +10,7 @@ export default function HomeBreadcrumbs() {
     <div className="flex flex-col flex-wrap gap-4">
       {variants.map((variant) => (
         <Breadcrumbs key={variant} variant={variant}>
-          <BreadcrumbItem><a target="_blank" href={siteConfig.links["homePage"]}>Trang chủ</a></BreadcrumbItem>
+          <BreadcrumbItem><a target="_blank" rel="noreferrer"  href={siteConfig.links["homePage"]}>Trang chủ</a></BreadcrumbItem>
           <BreadcrumbItem>Khóa Học Group Buy</BreadcrumbItem>
         </Breadcrumbs>
       ))}

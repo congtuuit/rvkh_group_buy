@@ -1,9 +1,12 @@
-import { Input, Link, Navbar, NavbarContent } from "@nextui-org/react";
+"use client"
+
+import { Input, Navbar, NavbarContent } from "@nextui-org/react";
 import React from "react";
+
 import { FeedbackIcon } from "../icons/navbar/feedback-icon";
-import { GithubIcon } from "../icons/navbar/github-icon";
 import { SupportIcon } from "../icons/navbar/support-icon";
 import { SearchIcon } from "../icons/searchicon";
+
 import { BurguerButton } from "./burguer-button";
 import { NotificationsDropdown } from "./notifications-dropdown";
 import { UserDropdown } from "./user-dropdown";
@@ -25,9 +28,9 @@ export const NavbarWrapper = ({ children }: Props) => {
         <NavbarContent className="md:hidden">
           <BurguerButton />
         </NavbarContent>
+        
         <NavbarContent className="w-full max-md:hidden">
           <Input
-            startContent={<SearchIcon />}
             isClearable
             className="w-full"
             classNames={{
@@ -35,11 +38,13 @@ export const NavbarWrapper = ({ children }: Props) => {
               mainWrapper: "w-full",
             }}
             placeholder="Tìm kiếm..."
+            startContent={<SearchIcon />}
           />
         </NavbarContent>
+
         <NavbarContent
-          justify="end"
           className="w-fit data-[justify=end]:flex-grow-0"
+          justify="end"
         >
           <div className="flex items-center gap-2 max-md:hidden">
             <FeedbackIcon />

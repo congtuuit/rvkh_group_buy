@@ -48,4 +48,3 @@ export const Sidebar = Object.assign(SidebarWrapper, {
   Overlay,
   Footer,
 });
-

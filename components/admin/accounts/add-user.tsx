@@ -16,13 +16,13 @@ export const AddUser = () => {
   return (
     <div>
       <>
-        <Button onPress={onOpen} color="primary">
+        <Button color="primary" onPress={onOpen}>
           Add User
         </Button>
         <Modal
           isOpen={isOpen}
-          onOpenChange={onOpenChange}
           placement="top-center"
+          onOpenChange={onOpenChange}
         >
           <ModalContent>
             {(onClose) => (

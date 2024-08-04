@@ -7,6 +7,7 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import React, { useState } from "react";
+
 import { AcmeIcon } from "../icons/acme-icon";
 import { AcmeLogo } from "../icons/acmelogo";
 import { BottomIcon } from "../icons/sidebar/bottom-icon";
@@ -37,7 +38,7 @@ export const CompaniesDropdown = () => {
       </div>
     </div>
   );
-  
+
   return (
     <Dropdown
       classNames={{
@@ -59,6 +60,7 @@ export const CompaniesDropdown = () => {
         </div>
       </DropdownTrigger>
       <DropdownMenu
+        aria-label="Avatar Actions"
         onAction={(e) => {
           if (e === "1") {
             setCompany({
@@ -89,50 +91,49 @@ export const CompaniesDropdown = () => {
             });
           }
         }}
-        aria-label="Avatar Actions"
       >
         <DropdownSection title="Companies">
           <DropdownItem
             key="1"
-            startContent={<AcmeIcon />}
-            description="San Fransico, CA"
             classNames={{
               base: "py-4",
               title: "text-base font-semibold",
             }}
+            description="San Fransico, CA"
+            startContent={<AcmeIcon />}
           >
             Facebook
           </DropdownItem>
           <DropdownItem
             key="2"
-            startContent={<AcmeLogo />}
-            description="Austin, Tx"
             classNames={{
               base: "py-4",
               title: "text-base font-semibold",
             }}
+            description="Austin, Tx"
+            startContent={<AcmeLogo />}
           >
             Instagram
           </DropdownItem>
           <DropdownItem
             key="3"
-            startContent={<AcmeIcon />}
-            description="Brooklyn, NY"
             classNames={{
               base: "py-4",
               title: "text-base font-semibold",
             }}
+            description="Brooklyn, NY"
+            startContent={<AcmeIcon />}
           >
             Twitter
           </DropdownItem>
           <DropdownItem
             key="4"
-            startContent={<AcmeIcon />}
-            description="Palo Alto, CA"
             classNames={{
               base: "py-4",
               title: "text-base font-semibold",
             }}
+            description="Palo Alto, CA"
+            startContent={<AcmeIcon />}
           >
             Acme Co.
           </DropdownItem>

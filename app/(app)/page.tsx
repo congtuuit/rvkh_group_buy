@@ -6,7 +6,7 @@ function Home() {
     <section>
       <HomeBreadcrumbs />
       <div className="flex flex-col md:py-4">
-        <GroupBuyCourses key="group-buy-courses"/>
+        <GroupBuyCourses key="group-buy-courses" />
       </div>
     </section>
   );

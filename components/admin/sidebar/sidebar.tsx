@@ -1,24 +1,28 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
+
+import { ViewIcon } from "../icons/sidebar/view-icon";
+import { useSidebarContext } from "../layout/layout-context";
+
 import { Sidebar } from "./sidebar.styles";
 import { CompaniesDropdown } from "./companies-dropdown";
-import { ViewIcon } from "../icons/sidebar/view-icon";
 import { SidebarItem } from "./sidebar-item";
 import { SidebarMenu } from "./sidebar-menu";
-import { useSidebarContext } from "../layout/layout-context";
-import { usePathname } from "next/navigation";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
   const { collapsed, setCollapsed } = useSidebarContext();
 
-
-  console.log("pathname ", pathname)
   return (
     <aside className="h-screen z-[20] sticky top-0">
       {collapsed ? (
-        <div className={Sidebar.Overlay()} onClick={setCollapsed} />
+        <div
+          className={Sidebar.Overlay()}
+          role="presentation"
+          onClick={setCollapsed}
+        />
       ) : null}
       <div
         className={
@@ -35,10 +39,10 @@ export const SidebarWrapper = () => {
           <div className={Sidebar.Body()}>
             <SidebarMenu title="Tùy chọn">
               <SidebarItem
+                href="/group-buy-courses"
+                icon={<ViewIcon />}
                 isActive={pathname === "/group-buy-courses"}
                 title="Khóa học group buy"
-                icon={<ViewIcon />}
-                href="/group-buy-courses"
               />
             </SidebarMenu>
           </div>

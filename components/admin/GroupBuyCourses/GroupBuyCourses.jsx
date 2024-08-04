@@ -116,6 +116,7 @@ function GroupBuyCourses() {
             </Tooltip>
             <Tooltip color="danger" content="Xóa">
               <span
+                role="presentation"
                 className="text-lg text-danger cursor-pointer active:opacity-50"
                 onClick={() => {
                   deleteRecord(id);

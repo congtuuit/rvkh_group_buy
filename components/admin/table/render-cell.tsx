@@ -1,8 +1,10 @@
 import { User, Tooltip, Chip } from "@nextui-org/react";
 import React from "react";
+
 import { DeleteIcon } from "../icons/table/delete-icon";
 import { EditIcon } from "../icons/table/edit-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
+
 import { users } from "./data";
 
 interface Props {
@@ -13,6 +15,7 @@ interface Props {
 export const RenderCell = ({ user, columnKey }: Props) => {
   // @ts-ignore
   const cellValue = user[columnKey];
+
   switch (columnKey) {
     case "name":
       return (
@@ -39,15 +42,15 @@ export const RenderCell = ({ user, columnKey }: Props) => {
     case "status":
       return (
         <Chip
-          size="sm"
-          variant="flat"
           color={
             cellValue === "active"
               ? "success"
               : cellValue === "paused"
-              ? "danger"
-              : "warning"
+                ? "danger"
+                : "warning"
           }
+          size="sm"
+          variant="flat"
         >
           <span className="capitalize text-xs">{cellValue}</span>
         </Chip>
@@ -58,26 +61,22 @@ export const RenderCell = ({ user, columnKey }: Props) => {
         <div className="flex items-center gap-4 ">
           <div>
             <Tooltip content="Details">
-              <button onClick={() => console.log("View user", user.id)}>
-                <EyeIcon size={20} fill="#979797" />
+              <button onClick={() => {}}>
+                <EyeIcon fill="#979797" size={20} />
               </button>
             </Tooltip>
           </div>
           <div>
-            <Tooltip content="Edit user" color="secondary">
-              <button onClick={() => console.log("Edit user", user.id)}>
-                <EditIcon size={20} fill="#979797" />
+            <Tooltip color="secondary" content="Edit user">
+              <button onClick={() => {}}>
+                <EditIcon fill="#979797" size={20} />
               </button>
             </Tooltip>
           </div>
           <div>
-            <Tooltip
-              content="Delete user"
-              color="danger"
-              onClick={() => console.log("Delete user", user.id)}
-            >
+            <Tooltip color="danger" content="Delete user" onClick={() => {}}>
               <button>
-                <DeleteIcon size={20} fill="#FF0080" />
+                <DeleteIcon fill="#FF0080" size={20} />
               </button>
             </Tooltip>
           </div>

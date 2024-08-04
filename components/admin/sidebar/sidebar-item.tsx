@@ -1,7 +1,8 @@
 import NextLink from "next/link";
 import React from "react";
-import { useSidebarContext } from "../layout/layout-context";
 import clsx from "clsx";
+
+import { useSidebarContext } from "../layout/layout-context";
 
 interface Props {
   title: string;
@@ -11,17 +12,18 @@ interface Props {
 }
 
 export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
-  const { collapsed, setCollapsed } = useSidebarContext();
+  const { setCollapsed } = useSidebarContext();
 
   const handleClick = () => {
     if (window.innerWidth < 768) {
       setCollapsed();
     }
   };
+
   return (
     <NextLink
-      href={href}
       className="text-default-900 active:bg-none max-w-full"
+      href={href}
       style={{ color: "inherit" }}
     >
       <div
@@ -29,12 +31,15 @@ export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
           isActive
             ? "bg-primary-100 [&_svg_path]:fill-primary-500"
             : "hover:bg-default-100",
-          "flex gap-2 w-full min-h-[44px] h-full items-center px-3.5 rounded-xl cursor-pointer transition-all duration-150 active:scale-[0.98]"
+          "flex gap-2 w-full min-h-[44px] h-full items-center px-3.5 rounded-xl cursor-pointer transition-all duration-150 active:scale-[0.98]",
         )}
+        role="presentation"
         onClick={handleClick}
       >
         {icon}
-        <span className="text-default-900" style={{ color: "inherit" }}>{title}</span>
+        <span className="text-default-900" style={{ color: "inherit" }}>
+          {title}
+        </span>
       </div>
     </NextLink>
   );

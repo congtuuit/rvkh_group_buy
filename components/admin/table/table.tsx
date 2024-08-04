@@ -1,5 +1,4 @@
 import {
-  Link,
   Table,
   TableBody,
   TableCell,
@@ -8,6 +7,7 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import React from "react";
+
 import { columns, users } from "./data";
 import { RenderCell } from "./render-cell";
 
@@ -19,8 +19,8 @@ export const TableWrapper = () => {
           {(column) => (
             <TableColumn
               key={column.uid}
-              hideHeader={column.uid === "actions"}
               align={column.uid === "actions" ? "center" : "start"}
+              hideHeader={column.uid === "actions"}
             >
               {column.name}
             </TableColumn>

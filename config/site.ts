@@ -5,12 +5,8 @@ export const siteConfig = {
   description: "Make beautiful websites regardless of your design experience.",
   navItems: [
     {
-      label: "Trang Chủ",
+      label: "Về Trang Chủ",
       href: "https://reviewkhoahoc.net/",
-    },
-    {
-      label: "Giới thiệu",
-      href: "/about",
     },
   ],
   navMenuItems: [
@@ -24,7 +20,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    homePage: "https://reviewkhoahoc.net/"
+    homePage: "https://reviewkhoahoc.net/",
     // github: "https://github.com/nextui-org/nextui",
     // twitter: "https://twitter.com/getnextui",
     // docs: "https://nextui.org",
