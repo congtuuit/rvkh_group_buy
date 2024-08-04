@@ -11,20 +11,17 @@ import { toast } from "react-toastify";
 export const Login = () => {
   const router = useRouter();
   const initialValues = {
-    email: "",
-    password: "",
+    email: "nguyendiuhien",
+    password: "$s12N2XvaJiwTBM2@",
   };
 
   const handleLogin = useCallback(
     async (values) => {
-      // `values` contains email & password. You can use provider to connect user
-      //await createAuthCookie();
       authService.loginAsync(values, (success) => {
-        console.log("success ", success)
         if (success) {
           router.replace("/admin");
         } else {
-          console.log("err")
+          console.log("err");
           toast.error("Tài khoản hoặc mật khẩu không đúng.");
         }
       });

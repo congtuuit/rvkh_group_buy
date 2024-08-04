@@ -12,6 +12,7 @@ import { Providers } from "../providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Layout } from "@/components/admin/layout/layout";
+import withAuth from "@/components/admin/auth/withAuth";
 
 export const metadata: Metadata = {
   title: {
@@ -31,11 +32,7 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning lang="en">
       <head />
@@ -56,3 +53,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default RootLayout;

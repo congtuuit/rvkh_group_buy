@@ -1,23 +1,47 @@
 //import { deleteAuthCookie } from "./../../actions/auth.action";
+import axiosInstance from "@/api/axiosInstance";
+import Cookies from "js-cookie";
 
 export const AuthService = {
+  isLoggedIn: () => {
+    const token = AuthService.getToken();
+    return !!token;
+  },
   logoutAsync: async (router) => {
-    // await deleteAuthCookie(); this is used in server - not run at client
+    Cookies.set("token", "");
     router.replace("/login");
   },
-  isLoggedIn: () => {
-    // const token = getAuthCookie();
-    // // Implement additional logic to validate the token if necessary
-    // return !!token;
-  },
-  loginAsync: async (req, callBack) => {
+  loginAsync: async ({ email, password }, callBack) => {
     // TODO
+    try {
+      const response = await axiosInstance.post(
+        "",
+        {
+          action: "authenticate",
+          email: email,
+          password: password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
 
-    console.log("vreq ", req);
-
-    if (callBack) {
-      callBack(false);
+      const { success, token } = response.data;
+      if (success === false) {
+        callBack && callBack(false);
+      } else {
+        // Store token in a cookie
+        Cookies.set("token", token, { expires: 1 }); // Expires in 1 day
+        callBack && callBack(true);
+      }
+    } catch (error) {
+      console.error("API call error:", error);
+      callBack && callBack(false);
     }
-    return false;
+  },
+  getToken: () => {
+    return Cookies.get("token");
   },
 };
