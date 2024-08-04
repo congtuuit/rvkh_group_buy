@@ -38,7 +38,7 @@ export const Navbar = () => {
     <NextUINavbar
       maxWidth="xl"
       position="sticky"
-      style={{ background: "#ededed" }}
+      style={{ borderBottom: "1px solid #ededed" }}
     >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
