@@ -10,7 +10,7 @@ function GroupBuyCoursesPage() {
     <div>
       <h2 className={subtitle()}>Khóa học group buy</h2>
       <div className="mt-3">
-        <Link className="mb-3 float-right" href="group-buy-courses/new">
+        <Link className="mb-3 float-right" href="/group-buy-courses/new">
           <Button color="primary" radius="sm" type="button">
             Thêm khóa học
           </Button>

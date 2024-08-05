@@ -63,7 +63,6 @@ function GroupBuyCourses() {
   };
 
   const deleteRecord = async (recordId) => {
-    console.log("recordId ", recordId);
     let isSuccess = false;
     const id = toast.loading("Vui lòng chờ...");
     try {
