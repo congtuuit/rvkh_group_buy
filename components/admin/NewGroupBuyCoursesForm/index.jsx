@@ -18,6 +18,7 @@ const category = {
 function NewGroupBuyCoursesForm() {
   const router = useRouter();
   const [formData, setFormData] = useState(initialFormData);
+  const [isLoading, setIsLoading] = useState(false);
 
   // check edit mode
   const searchParams = useSearchParams();
@@ -77,6 +78,7 @@ function NewGroupBuyCoursesForm() {
       isLoading: false,
       autoClose: 2000,
     });
+    setIsLoading(false);
   };
 
   const handleUpdateCourse = async (_formData) => {
@@ -93,9 +95,11 @@ function NewGroupBuyCoursesForm() {
       isLoading: false,
       autoClose: 2000,
     });
+    setIsLoading(false);
   };
 
   const handleFormSubmit = async (values) => {
+    setIsLoading(true);
     if (isEdit) {
       await handleUpdateCourse(values);
     } else {
@@ -113,11 +117,18 @@ function NewGroupBuyCoursesForm() {
           return (
             <div style={{ display: "block" }}>
               <div className="w-full" style={{ display: "inline-block" }}>
-                <div className="float-right mb-3">
+                <div className="flex float-right mb-3">
                   <Button radius="sm" color="default" onClick={goBack}>
                     Trở về
                   </Button>
-                  <Button radius="sm" color="primary" type="submit" className="ml-2" onPress={handleSubmit}>
+                  <Button
+                    isLoading={isLoading}
+                    radius="sm"
+                    color="primary"
+                    type="submit"
+                    className="ml-2"
+                    onPress={handleSubmit}
+                  >
                     {isEdit ? "Cập nhật" : "Tạo mới"}
                   </Button>
                 </div>
