@@ -17,7 +17,7 @@ function ProductCard(props: ProductCardProps) {
   const { thumbnail = "", title = "", footerUrl = "", price = "" } = props;
 
   return (
-    <Card isPressable className="product-card" shadow="sm" radius="sm" style={{height: "280px", width: ""}}>
+    <Card isPressable className="product-card" radius="sm" shadow="sm" style={{ height: "280px", width: "" }}>
       <CardBody className="thumbnail-block overflow-visible p-0">
         <Image
           alt={title}
@@ -33,8 +33,10 @@ function ProductCard(props: ProductCardProps) {
         <p className="text-default-500">{price}</p>
       </CardFooter>
       <CardFooter className="content-block text-small justify-between">
-        <a href={footerUrl} className="content-block self-center w-full">
-          <Button className="w-full" radius="sm" size="sm" color="primary">Tham gia nhóm</Button>
+        <a className="content-block self-center w-full" href={footerUrl}>
+          <Button className="w-full" color="primary" radius="sm" size="sm">
+            Tham gia nhóm
+          </Button>
         </a>
       </CardFooter>
     </Card>

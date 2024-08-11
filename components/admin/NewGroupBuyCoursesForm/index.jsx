@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { getAsync, postsAsync, putAsync } from "@/api/post.api";
 import { useSearchParams } from "next/navigation";
-import { Formik } from "formik";
+import { Formik, useFormik } from "formik";
 
 const category = {
   GROUPING: "171",
@@ -19,6 +19,7 @@ function NewGroupBuyCoursesForm() {
   const router = useRouter();
   const [formData, setFormData] = useState(initialFormData);
   const [isLoading, setIsLoading] = useState(false);
+  
 
   // check edit mode
   const searchParams = useSearchParams();
@@ -30,6 +31,10 @@ function NewGroupBuyCoursesForm() {
       handleGetCourse(id);
     }
   }, [isEdit]);
+
+  useEffect(() => {
+    formik.setValues(formData);
+  }, [formData]);
 
   const handleGetCourse = async (id) => {
     const response = await getAsync(id);
@@ -107,13 +112,14 @@ function NewGroupBuyCoursesForm() {
     }
   };
 
+  const formik = useFormik({});
+
   return (
     <Card className="p-5">
-      <Formik initialValues={formData} onSubmit={handleFormSubmit}>
-        {({ handleChange, values, handleSubmit, setValues }) => {
-          useEffect(() => {
-            setValues(formData);
-          }, [formData]);
+      <Formik initialValues={formData} onSubmit={handleFormSubmit} enableReinitialize innerRef={formik}>
+        {({ handleChange, values, handleSubmit }) => {
+          // Directly setting the form values when formData changes
+
           return (
             <div style={{ display: "block" }}>
               <div className="w-full" style={{ display: "inline-block" }}>

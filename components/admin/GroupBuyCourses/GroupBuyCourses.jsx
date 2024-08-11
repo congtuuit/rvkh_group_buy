@@ -112,13 +112,13 @@ function GroupBuyCourses() {
     switch (columnKey) {
       case "title":
         return (
-          <span onClick={() => openEditPage(id)} className="cursor-pointer">
+          <button onClick={() => openEditPage(id)} className="cursor-pointer">
             {cellValue}
-          </span>
+          </button>
         );
       case "url":
         return (
-          <a href={cellValue} target="_blank">
+          <a href={cellValue} target="_blank" rel="noreferrer">
             {cellValue}
           </a>
         );
@@ -132,15 +132,15 @@ function GroupBuyCourses() {
         return (
           <div className="relative flex items-center gap-2">
             <Tooltip content="Sửa" className="mr-5">
-              <span
+              <button
                 onClick={() => openEditPage(id)}
                 className="text-lg text-default-400 cursor-pointer active:opacity-50 mr-3"
               >
                 Sửa
-              </span>
+              </button>
             </Tooltip>
             <Tooltip color="danger" content="Xóa">
-              <span
+              <div
                 role="presentation"
                 className="text-lg text-danger cursor-pointer active:opacity-50"
                 onClick={() => {
@@ -148,7 +148,7 @@ function GroupBuyCourses() {
                 }}
               >
                 Xóa
-              </span>
+              </div>
             </Tooltip>
           </div>
         );

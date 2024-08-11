@@ -4,11 +4,11 @@ import React from "react";
 
 import { NavbarWrapper } from "../navbar/navbar";
 import { SidebarWrapper } from "../sidebar/sidebar";
+
 import { SidebarContext } from "./layout-context";
+
 import ToastWrapper from "@/components/admin/ToastWrapper";
-import { authService } from "@/features";
 import useAuth from "@/features/auth/useAuth";
-import { useRouter } from "next/router";
   
 interface Props {
   children: React.ReactNode;

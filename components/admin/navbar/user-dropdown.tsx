@@ -8,7 +8,9 @@ import {
 } from "@nextui-org/react";
 import React, { useCallback } from "react";
 import { useRouter } from "next/navigation";
+
 import { DarkModeSwitch } from "./darkmodeswitch";
+
 import { authService } from "@/features";
 
 export const UserDropdown = () => {
