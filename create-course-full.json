@@ -1,0 +1,32 @@
+{
+    "post_author": 1,
+    "post_content": "Introduction to Mathematics is a fundamental course covering arithmetic, algebra, geometry, and basic statistics. It develops problem-solving and critical thinking skills, providing a solid foundation for further mathematical studies and practical applications.",
+    "post_title": "Introduction to Mathematics",
+    "post_status": "publish",
+    "comment_status": "open",
+    "course_level": "beginner",
+    "additional_content": {
+        "course_benefits": "Course benefits",
+        "course_target_audience": "Course target audience",
+        "course_duration": {
+            "hours": "1",
+            "minutes": "10"
+        },
+        "course_material_includes": "Course material includes",
+        "course_requirements": "Course requirements"
+    },
+    "video": {
+        "source_type": "youtube",
+        "source": "https://www.youtube.com/watch?v=iLlrIi9-NfQ"
+    },
+    "course_categories": [161,163],
+    "course_tags": [18,19],
+    "thumbnail_id": 0,
+    "pricing": {
+        "type": "paid",
+        "productType": "simple",
+        "price": "18000",
+        "regular_price": "199999",
+        "sale_price": "18000"
+    }
+  }

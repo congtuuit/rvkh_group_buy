@@ -16,6 +16,7 @@ import {
 } from "@nextui-org/react";
 import { deletePostAsync, getPostsAsync } from "../../../api/post.api";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const statusColorMap = {
   draff: "default",
@@ -23,6 +24,7 @@ const statusColorMap = {
 };
 
 function GroupBuyCourses() {
+  const router = useRouter();
   const [page, setPage] = React.useState(1);
   const [totalPages, setTotalPages] = React.useState(1);
   const [posts, setPosts] = React.useState([]);
@@ -62,7 +64,17 @@ function GroupBuyCourses() {
     }
   };
 
-  const deleteRecord = async (recordId) => {
+  function deleteConfirmAlert(callBack, id) {
+    let text = "Bạn có chắc muốn xóa khóa học này không? \nĐồng ý OK hoặc Hủy.";
+    if (confirm(text) == true) {
+      callBack && callBack(id);
+    } else {
+      callBack && callBack(undefined);
+    }
+  }
+
+  const deleteRecord = async (recordId = undefined) => {
+    if (!Boolean(recordId)) return;
     let isSuccess = false;
     const id = toast.loading("Vui lòng chờ...");
     try {
@@ -79,7 +91,7 @@ function GroupBuyCourses() {
         autoClose: 1500,
       });
 
-      setPage(1);
+      fetchPosts(1);
     } else {
       toast.update(id, {
         render: "Xóa bài viết thất bại.",
@@ -90,18 +102,29 @@ function GroupBuyCourses() {
     }
   };
 
+  const openEditPage = (id) => {
+    return router.push("/group-buy-courses/edit/?id=" + id);
+  };
+
   const renderCell = React.useCallback((item, columnKey) => {
     const { id } = item;
     const cellValue = item[columnKey];
     switch (columnKey) {
+      case "title":
+        return (
+          <span onClick={() => openEditPage(id)} className="cursor-pointer">
+            {cellValue}
+          </span>
+        );
+      case "url":
+        return (
+          <a href={cellValue} target="_blank">
+            {cellValue}
+          </a>
+        );
       case "status":
         return (
-          <Chip
-            className="capitalize"
-            color={statusColorMap[item.status]}
-            size="sm"
-            variant="flat"
-          >
+          <Chip className="capitalize" color={statusColorMap[item.status]} size="sm" variant="flat">
             {cellValue}
           </Chip>
         );
@@ -109,7 +132,10 @@ function GroupBuyCourses() {
         return (
           <div className="relative flex items-center gap-2">
             <Tooltip content="Sửa" className="mr-5">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50 mr-3">
+              <span
+                onClick={() => openEditPage(id)}
+                className="text-lg text-default-400 cursor-pointer active:opacity-50 mr-3"
+              >
                 Sửa
               </span>
             </Tooltip>
@@ -118,7 +144,7 @@ function GroupBuyCourses() {
                 role="presentation"
                 className="text-lg text-danger cursor-pointer active:opacity-50"
                 onClick={() => {
-                  deleteRecord(id);
+                  deleteConfirmAlert(deleteRecord, id);
                 }}
               >
                 Xóa
@@ -158,23 +184,45 @@ function GroupBuyCourses() {
         <TableColumn key="status">Trạng thái</TableColumn>
         <TableColumn key="actions">Thao tác</TableColumn>
       </TableHeader>
-      <TableBody
-        items={posts ?? []}
-        loadingContent={<Spinner />}
-        loadingState={isLoading ?? undefined}
-      >
+      <TableBody items={posts ?? []} loadingContent={<Spinner />} loadingState={isLoading ?? undefined}>
         {(item) => {
           return (
-            <TableRow key={item?.id}>
-              {(columnKey) => (
-                <TableCell>{renderCell(item, columnKey)}</TableCell>
-              )}
-            </TableRow>
+            <TableRow key={item?.id}>{(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}</TableRow>
           );
         }}
       </TableBody>
     </Table>
   );
 }
+
+const showConfirmToast = () => {
+  const ConfirmToast = ({ onConfirm, onCancel }) => {
+    return (
+      <div>
+        <p>Bạn có chắc muốn xóa khóa học này không?</p>
+        <button onClick={onConfirm}>Đồng ý</button>
+        <button onClick={onCancel}>Hủy</button>
+      </div>
+    );
+  };
+
+  return new Promise((resolve, reject) => {
+    const handleConfirm = () => {
+      resolve(true);
+      toast.dismiss();
+    };
+
+    const handleCancel = () => {
+      reject(false);
+      toast.dismiss();
+    };
+
+    toast(<ConfirmToast onConfirm={handleConfirm} onCancel={handleCancel} />, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: false, // Disable auto-close for confirmation
+      closeOnClick: false, // Prevent closing on click outside
+    });
+  });
+};
 
 export default GroupBuyCourses;
