@@ -1,0 +1,17 @@
+UPDATE rvkh_posts 
+SET post_title = REPLACE(post_title, 'ồ', 'ồ'),
+    post_title = REPLACE(post_title, 'ố', 'ố'),
+    post_title = REPLACE(post_title, 'ổ', 'ổ'),
+    post_title = REPLACE(post_title, 'ề', 'ề'),
+    post_title = REPLACE(post_title, 'ế', 'ế'),
+    post_title = REPLACE(post_title, 'ệ', 'ệ'),
+    post_title = REPLACE(post_title, 'ầ', 'ầ'),
+WHERE 
+post_title LIKE '%ồ%' OR
+post_title LIKE '%ố%' OR
+post_title LIKE '%ổ%' OR
+post_title LIKE '%ề%' OR
+post_title LIKE '%ế%' OR
+post_title LIKE '%ầ%' OR
+post_title LIKE '%ệ%'
+;
